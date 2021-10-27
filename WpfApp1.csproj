@@ -9,8 +9,10 @@
   <ItemGroup>
     <None Remove="1606949809_12-p-nochnoi-gorod-49.jpg" />
     <None Remove="cooltext391766154724925.png" />
+    <None Remove="Half-Life_Black_Mesa_logo.svg.png" />
     <None Remove="mj.png" />
     <None Remove="mj2.jpg" />
+    <None Remove="orshawalk.ico.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +21,8 @@
 
   <ItemGroup>
     <Resource Include="1606949809_12-p-nochnoi-gorod-49.jpg" />
+    <Resource Include="Half-Life_Black_Mesa_logo.svg.png" />
+    <Resource Include="orshawalk.ico.png" />
   </ItemGroup>
 
   <ItemGroup>

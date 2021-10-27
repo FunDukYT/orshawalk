@@ -1,0 +1,21 @@
+﻿<Window x:Name="HWindow" x:Class="WpfApp1.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Help" MinHeight="450" MinWidth="550" Height="450" Width="550" WindowStyle="None">
+    <Grid>
+        <Rectangle Height="32" Stroke="Black" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow" Fill="#33000000" Margin="-1,-2,-1,0"/>
+        <Button x:Name="closeB" Content="❌" Margin="0,2,3,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="closeB_Click" MouseEnter="closeB_Red" MouseLeave="closeB_Black"/>
+        <RichTextBox x:Name="textBox" Margin="10,38,10,10">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</Window>
