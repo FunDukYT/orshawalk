@@ -45,15 +45,40 @@ namespace WpfApp1
         {
             closeB.Foreground = new SolidColorBrush(Colors.Black);
         }
+        public void maxB_Blue(object sender, MouseEventArgs e)
+        {
+            maxB.Foreground = new SolidColorBrush(Colors.Blue);
+        }
+        public void maxB_Black(object sender, MouseEventArgs e)
+        {
+            maxB.Foreground = new SolidColorBrush(Colors.Black);
+        }
+        private void maxB_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+                maxB.Content = "🔳";
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+                maxB.Content = "🔲";
+            }
+        }
         private void closeB_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            
         }
         
         public Help()
         {
             InitializeComponent();
             modeCheck();
+            FileStream fs = new FileStream(@"./Help.rtf", FileMode.Open);
+            textBox.Selection.Load(fs, DataFormats.Rtf);
+            fs.Close();
         }
 
     }

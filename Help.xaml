@@ -9,10 +9,11 @@
     <Grid>
         <Rectangle Height="32" Stroke="Black" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow" Fill="#33000000" Margin="-1,-2,-1,0"/>
         <Button x:Name="closeB" Content="❌" Margin="0,2,3,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="closeB_Click" MouseEnter="closeB_Red" MouseLeave="closeB_Black"/>
+        <Button x:Name="maxB" Content="🔲" Margin="0,2,29,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="maxB_Click" MouseEnter="maxB_Blue" MouseLeave="maxB_Black"/>
         <RichTextBox x:Name="textBox" Margin="10,38,10,10">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="RichTextBox"/>
+                    <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

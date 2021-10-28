@@ -31,6 +31,7 @@
         <Button x:Name ="helpB" Content="❓" Margin="0,3,107,0" VerticalAlignment="Top" Click="helpB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="helpB_Blue" MouseLeave="helpB_Black"/>
         <Label x:Name="name" Content="Симулятор прогулки по Орше" HorizontalAlignment="Left" Margin="20,2,0,0" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow"/>
         <Button x:Name ="cordsB" Content="x,y" Margin="0,3,133,0" VerticalAlignment="Top" Click="cordsB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="cordsB_Blue" MouseLeave="cordsB_Black"/>
+        <Label x:Name="Time" Content="Label" HorizontalAlignment="Right" Margin="0,2,383,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

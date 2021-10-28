@@ -401,6 +401,8 @@ namespace WpfApp1
         {
             load();
             InitializeComponent();
+            DateTime time = DateTime.Now;
+            Time.Content = time.ToString();
             cordsvCheck();
             streetCheck();
             modeCheck();
