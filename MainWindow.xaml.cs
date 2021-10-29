@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfApp1
 {
@@ -55,6 +56,7 @@ namespace WpfApp1
                 yyy.Foreground = new SolidColorBrush(Colors.White);
                 name.Foreground = new SolidColorBrush(Colors.White);
                 Places.Background = new SolidColorBrush(Color.FromRgb(57, 57, 57));
+                Time.Foreground = new SolidColorBrush(Colors.White);
             }
             else if (mode == 0)
             {
@@ -68,6 +70,7 @@ namespace WpfApp1
                 yyy.Foreground = new SolidColorBrush(Colors.Black);
                 name.Foreground = new SolidColorBrush(Colors.Black);
                 Places.Background = new SolidColorBrush(Colors.White);
+                Time.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
         private void modeB_Click(object sender, RoutedEventArgs e) // кнопка смены цветового режима
@@ -85,6 +88,7 @@ namespace WpfApp1
                 yyy.Foreground = new SolidColorBrush(Colors.White);
                 name.Foreground = new SolidColorBrush(Colors.White);
                 Places.Background = new SolidColorBrush(Color.FromRgb(57, 57, 57));
+                Time.Foreground = new SolidColorBrush(Colors.White);
             }
             else if (mode == 1)
             {
@@ -99,23 +103,7 @@ namespace WpfApp1
                 yyy.Foreground = new SolidColorBrush(Colors.Black);
                 name.Foreground = new SolidColorBrush(Colors.Black);
                 Places.Background = new SolidColorBrush(Colors.White);
-            }
-        }
-        public void cordsvCheck()
-        {
-            if (cordsv == 0)
-            {
-                consty.Visibility = Visibility.Hidden;
-                constx.Visibility = Visibility.Hidden;
-                xxx.Visibility = Visibility.Hidden;
-                yyy.Visibility = Visibility.Hidden;
-            }
-            else if (cordsv == 1)
-            {
-                consty.Visibility = Visibility.Visible;
-                constx.Visibility = Visibility.Visible;
-                xxx.Visibility = Visibility.Visible;
-                yyy.Visibility = Visibility.Visible;
+                Time.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
         public void streetChange() // запрос заведений из базы данных по критерию улицы
@@ -124,13 +112,26 @@ namespace WpfApp1
             SQLiteConnection conn = new SQLiteConnection("Data Source=places.db; Version=3;");
             SQLiteCommand sqlcmd = conn.CreateCommand();
             conn.Open();
-            sqlcmd.CommandText = "SELECT Заведение,Тип,Дом FROM places_1 WHERE Улица LIKE " + s1;
+            sqlcmd.CommandText = "SELECT Заведение,Тип,Дом,Описание,Время_Работы FROM places_1 WHERE Улица LIKE " + s1;
             SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlcmd.CommandText, conn);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             Places.ItemsSource = ds.Tables[0].DefaultView;
             conn.Close();
             street.Content = street_name;
+        }
+        public void imageChange() // смена изображения
+        {
+            try
+            {
+                String stringPath = "Assets/" + x + y + ".jpg";
+                MapView.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+            }
+            catch
+            {
+                String stringPath = "Assets/empty.png";
+                MapView.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+            }
         }
         public void streetCheck() // проверка улицы по координатам
         {
@@ -155,17 +156,32 @@ namespace WpfApp1
                 streetChange();
             }
         }
-        public void imageCheck() // смена изображения
+        public void cordsvCheck()
         {
-            try
+            if (cordsv == 0)
             {
-                String stringPath = "Assets/" + x + y + ".jpg";
-                MapView.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+                consty.Visibility = Visibility.Hidden;
+                constx.Visibility = Visibility.Hidden;
+                xxx.Visibility = Visibility.Hidden;
+                yyy.Visibility = Visibility.Hidden;
             }
-            catch
+            else if (cordsv == 1)
             {
-                String stringPath = "Assets/interface.png";
-                MapView.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+                consty.Visibility = Visibility.Visible;
+                constx.Visibility = Visibility.Visible;
+                xxx.Visibility = Visibility.Visible;
+                yyy.Visibility = Visibility.Visible;
+            }
+        }
+        public void timeCheck()
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                Time.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Time.Visibility = Visibility.Visible;
             }
         }
 
@@ -174,28 +190,28 @@ namespace WpfApp1
             y++;
             consty.Content = y;
             streetCheck();
-            imageCheck();
+            imageChange();
         }
         public void moveDown() // передвижение назад
         {
             y--;
             consty.Content = y;
             streetCheck();
-            imageCheck();
+            imageChange();
         }
         public void moveRight() // передвижение вправо
         {
             x++;
             constx.Content = x;
             streetCheck();
-            imageCheck();
+            imageChange();
         }
         public void moveLeft() // передвижение влево
         {
             x--;
             constx.Content = x;
             streetCheck();
-            imageCheck();
+            imageChange();
         }
         public void save() // сохранение координатов и цветового режима
         {
@@ -323,7 +339,7 @@ namespace WpfApp1
 
         private void closeB_Click(object sender, RoutedEventArgs e) 
         {
-            if (y1 != y && x1 != x || mode1 != mode || cordsv1 != cordsv)
+            if (y1 != y || x1 != x || mode1 != mode || cordsv1 != cordsv)
             {
                 MessageBoxResult result = MessageBox.Show("Сохранить перед закрытием?", "Выход", MessageBoxButton.YesNoCancel);
                 switch (result)
@@ -350,11 +366,13 @@ namespace WpfApp1
             {
                 this.WindowState = WindowState.Maximized;
                 maxB.Content = "🔳";
+                Time.Visibility = Visibility.Visible;
             }
             else
             {
                 this.WindowState = WindowState.Normal;
                 maxB.Content = "🔲";
+                Time.Visibility = Visibility.Hidden;
             }
         }
 
@@ -397,18 +415,27 @@ namespace WpfApp1
                 cordsv = 1;
             }
         }
+        public void cordsShow()
+        {
+            consty.Content = y;
+            constx.Content = x;
+        }
+        public void timeShow()
+        {
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate { Time.Content = DateTime.Now.ToString("HH:mm:ss"); }, this.Dispatcher);
+        }
+
         public MainWindow()
         {
             load();
             InitializeComponent();
-            DateTime time = DateTime.Now;
-            Time.Content = time.ToString();
+            imageChange();
+            timeCheck();
             cordsvCheck();
             streetCheck();
             modeCheck();
-            consty.Content = y;
-            constx.Content = x;
+            cordsShow();
+            timeShow();
         }
-
     }
 }

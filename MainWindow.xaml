@@ -15,7 +15,7 @@
         <Button x:Name="backB" Content="🔽" Margin="0,0,268,15" Click="backB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom"/>
         <Button x:Name="rightB" Content="▶" Margin="0,0,227,50" Click="rightB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom"/>
         <Label x:Name="street_label" Content="Улица: " HorizontalAlignment="Left" Margin="14,40,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <DataGrid x:Name="Places" MaxWidth="300" Margin="28,87,0,30" IsReadOnly="True" HorizontalAlignment="Left" Width="327" Background="White" BorderBrush="Transparent"/>
+        <DataGrid x:Name="Places" MaxWidth="300" Margin="28,87,0,62" IsReadOnly="True" HorizontalAlignment="Left" Width="327" Background="White" BorderBrush="Transparent"/>
         <Label x:Name="street" Content="Label" HorizontalAlignment="Left" Margin="78,40,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="Black" FontSize="18"/>
         <Label x:Name="xxx" Content="x=" Margin="0,0,35,39" HorizontalAlignment="Right" Width="24" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="yyy" Content="y=" Margin="0,0,35,19" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="24"/>
@@ -31,7 +31,8 @@
         <Button x:Name ="helpB" Content="❓" Margin="0,3,107,0" VerticalAlignment="Top" Click="helpB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="helpB_Blue" MouseLeave="helpB_Black"/>
         <Label x:Name="name" Content="Симулятор прогулки по Орше" HorizontalAlignment="Left" Margin="20,2,0,0" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow"/>
         <Button x:Name ="cordsB" Content="x,y" Margin="0,3,133,0" VerticalAlignment="Top" Click="cordsB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="cordsB_Blue" MouseLeave="cordsB_Black"/>
-        <Label x:Name="Time" Content="Label" HorizontalAlignment="Right" Margin="0,2,383,0" VerticalAlignment="Top"/>
+        <Label x:Name="Time" Content="Label" HorizontalAlignment="Right" Margin="0,-4,187,0" VerticalAlignment="Top" FontSize="18"/>
 
     </Grid>
+
 </Window>
