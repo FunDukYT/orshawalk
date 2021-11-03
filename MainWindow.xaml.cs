@@ -33,6 +33,7 @@ namespace WpfApp1
         public string street_name; // название улицы
         public int cordsv; // параметр видимости координатов
         public int cordsv1; // временный параметр видимости координатов
+        public string modeS;
 
         public void respawn() // возврат к нулевым координатам
         {
@@ -47,7 +48,8 @@ namespace WpfApp1
             if (mode == 1)
             {
                 MWindow.Background = new SolidColorBrush(Color.FromRgb(57, 57, 57));
-                modeB.Content = "🌙";
+                String stringPath = "Assets/dark-black.png";
+                mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
                 street.Foreground = new SolidColorBrush(Colors.White);
                 street_label.Foreground = new SolidColorBrush(Colors.White);
                 constx.Foreground = new SolidColorBrush(Colors.White);
@@ -57,11 +59,13 @@ namespace WpfApp1
                 name.Foreground = new SolidColorBrush(Colors.White);
                 Places.Background = new SolidColorBrush(Color.FromRgb(57, 57, 57));
                 Time.Foreground = new SolidColorBrush(Colors.White);
+                modeS = "dark";
             }
             else if (mode == 0)
             {
                 MWindow.Background = new SolidColorBrush(Colors.White);
-                modeB.Content = "☀";
+                String stringPath = "Assets/light-black.png";
+                mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
                 street.Foreground = new SolidColorBrush(Colors.Black);
                 street_label.Foreground = new SolidColorBrush(Colors.Black);
                 constx.Foreground = new SolidColorBrush(Colors.Black);
@@ -71,6 +75,7 @@ namespace WpfApp1
                 name.Foreground = new SolidColorBrush(Colors.Black);
                 Places.Background = new SolidColorBrush(Colors.White);
                 Time.Foreground = new SolidColorBrush(Colors.Black);
+                modeS = "light";
             }
         }
         private void modeB_Click(object sender, RoutedEventArgs e) // кнопка смены цветового режима
@@ -78,7 +83,8 @@ namespace WpfApp1
             if (mode == 0)
             {
                 MWindow.Background = new SolidColorBrush(Color.FromRgb(57,57,57));
-                modeB.Content = "🌙";
+                String stringPath = "Assets/dark-black.png";
+                mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
                 mode = 1;
                 street.Foreground = new SolidColorBrush(Colors.White);
                 street_label.Foreground = new SolidColorBrush(Colors.White);
@@ -89,11 +95,13 @@ namespace WpfApp1
                 name.Foreground = new SolidColorBrush(Colors.White);
                 Places.Background = new SolidColorBrush(Color.FromRgb(57, 57, 57));
                 Time.Foreground = new SolidColorBrush(Colors.White);
+                modeS = "dark";
             }
             else if (mode == 1)
             {
-                MWindow.Background = new SolidColorBrush(Colors.White);
-                modeB.Content = "☀";
+                MWindow.Background = new SolidColorBrush(Colors.Azure);
+                String stringPath = "Assets/light-black.png";
+                mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
                 mode = 0;
                 street.Foreground = new SolidColorBrush(Colors.Black);
                 street_label.Foreground = new SolidColorBrush(Colors.Black);
@@ -102,8 +110,9 @@ namespace WpfApp1
                 xxx.Foreground = new SolidColorBrush(Colors.Black);
                 yyy.Foreground = new SolidColorBrush(Colors.Black);
                 name.Foreground = new SolidColorBrush(Colors.Black);
-                Places.Background = new SolidColorBrush(Colors.White);
+                Places.Background = new SolidColorBrush(Colors.Azure);
                 Time.Foreground = new SolidColorBrush(Colors.Black);
+                modeS = "light";
             }
         }
         public void streetChange() // запрос заведений из базы данных по критерию улицы
@@ -154,34 +163,6 @@ namespace WpfApp1
             {
                 street_name = "null";
                 streetChange();
-            }
-        }
-        public void cordsvCheck()
-        {
-            if (cordsv == 0)
-            {
-                consty.Visibility = Visibility.Hidden;
-                constx.Visibility = Visibility.Hidden;
-                xxx.Visibility = Visibility.Hidden;
-                yyy.Visibility = Visibility.Hidden;
-            }
-            else if (cordsv == 1)
-            {
-                consty.Visibility = Visibility.Visible;
-                constx.Visibility = Visibility.Visible;
-                xxx.Visibility = Visibility.Visible;
-                yyy.Visibility = Visibility.Visible;
-            }
-        }
-        public void timeCheck()
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                Time.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                Time.Visibility = Visibility.Visible;
             }
         }
 
@@ -243,51 +224,71 @@ namespace WpfApp1
         }
         public void closeB_Red(object sender, MouseEventArgs e) 
         {
-            closeB.Foreground = new SolidColorBrush(Colors.Red);
+            String stringPath = "Assets/close-enter.png";
+            close_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void closeB_Black(object sender, MouseEventArgs e)
         {
-            closeB.Foreground = new SolidColorBrush(Colors.Black);
+            String stringPath = "Assets/close.png";
+            close_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void maxB_Blue(object sender, MouseEventArgs e)
         {
-            maxB.Foreground = new SolidColorBrush(Colors.Blue);
+            if (this.WindowState == WindowState.Normal)
+            {
+                String stringPath = "Assets/max-blue.png";
+                max_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+
+            }
+            else
+            {
+                String stringPath = "Assets/max2-blue.png";
+                max_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+            }
         }
         public void maxB_Black(object sender, MouseEventArgs e)
         {
-            maxB.Foreground = new SolidColorBrush(Colors.Black);
+            if (this.WindowState == WindowState.Normal)
+            {
+                String stringPath = "Assets/max-black.png";
+                max_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+
+            }
+            else
+            {
+                String stringPath = "Assets/max2-black.png";
+                max_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+            }
         }
         public void minB_Blue(object sender, MouseEventArgs e)
         {
-            minB.Foreground = new SolidColorBrush(Colors.Blue);
+            String stringPath = "Assets/min-blue.png";
+            min_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void minB_Black(object sender, MouseEventArgs e)
         {
-            minB.Foreground = new SolidColorBrush(Colors.Black);
+            String stringPath = "Assets/min-black.png";
+            min_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void modeB_Yellow(object sender, MouseEventArgs e)
         {
-            modeB.Foreground = new SolidColorBrush(Colors.Yellow);
+            String stringPath = "Assets/" + modeS + "-yellow.png";
+            mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void modeB_Black(object sender, MouseEventArgs e)
         {
-            modeB.Foreground = new SolidColorBrush(Colors.Black);
+            String stringPath = "Assets/" + modeS + "-black.png";
+            mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void helpB_Blue(object sender, MouseEventArgs e)
         {
-            helpB.Foreground = new SolidColorBrush(Colors.Blue);
+            String stringPath = "Assets/help-blue.png";
+            help_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         public void helpB_Black(object sender, MouseEventArgs e)
         {
-            helpB.Foreground = new SolidColorBrush(Colors.Black);
-        }
-        public void cordsB_Blue(object sender, MouseEventArgs e)
-        {
-            cordsB.Foreground = new SolidColorBrush(Colors.Blue);
-        }
-        public void cordsB_Black(object sender, MouseEventArgs e)
-        {
-            cordsB.Foreground = new SolidColorBrush(Colors.Black);
+            String stringPath = "Assets/help-black.png";
+            help_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
         private void Window_Key(object sender, KeyEventArgs e) // горячие клавиши в приложении
         {
@@ -315,6 +316,10 @@ namespace WpfApp1
             {
                 save();
             }
+            else if (e.Key == Key.F1)
+            {
+                help();
+            }
         }
         private void forwardB_Click(object sender, RoutedEventArgs e)
         {
@@ -334,6 +339,29 @@ namespace WpfApp1
         private void rightB_Click(object sender, RoutedEventArgs e)
         {
             moveRight();
+        }
+        private void left_upB_Click(object sender, RoutedEventArgs e)
+        {
+            moveUp();
+            moveLeft();
+        }
+
+        private void left_downB_Click(object sender, RoutedEventArgs e)
+        {
+            moveDown();
+            moveLeft();
+        }
+
+        private void right_downB_Click(object sender, RoutedEventArgs e)
+        {
+            moveRight();
+            moveDown();
+        }
+
+        private void right_upB_Click(object sender, RoutedEventArgs e)
+        {
+            moveRight();
+            moveUp();
         }
 
 
@@ -365,20 +393,28 @@ namespace WpfApp1
             if(this.WindowState == WindowState.Normal)
             {
                 this.WindowState = WindowState.Maximized;
-                maxB.Content = "🔳";
                 Time.Visibility = Visibility.Visible;
+                String stringPath = "Assets/max2-black.png";
+                max_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
+
             }
             else
             {
                 this.WindowState = WindowState.Normal;
-                maxB.Content = "🔲";
                 Time.Visibility = Visibility.Hidden;
+                String stringPath = "Assets/max-black.png";
+                max_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
             }
         }
 
         private void minB_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+        public void help()
+        {
+            Help help = new Help();
+            help.Show();
         }
 
         private void saveB_Click(object sender, RoutedEventArgs e)
@@ -393,27 +429,7 @@ namespace WpfApp1
 
         private void helpB_Click(object sender, RoutedEventArgs e)
         {
-            Help help = new Help();
-            help.Show();
-        }
-        private void cordsB_Click(object sender, RoutedEventArgs e)
-        {
-            if(cordsv == 1)
-            {
-                consty.Visibility = Visibility.Hidden;
-                constx.Visibility = Visibility.Hidden;
-                xxx.Visibility = Visibility.Hidden;
-                yyy.Visibility = Visibility.Hidden;
-                cordsv = 0;
-            }
-            else if(cordsv == 0)
-            {
-                consty.Visibility = Visibility.Visible;
-                constx.Visibility = Visibility.Visible;
-                xxx.Visibility = Visibility.Visible;
-                yyy.Visibility = Visibility.Visible;
-                cordsv = 1;
-            }
+            help();
         }
         public void cordsShow()
         {
@@ -430,8 +446,6 @@ namespace WpfApp1
             load();
             InitializeComponent();
             imageChange();
-            timeCheck();
-            cordsvCheck();
             streetCheck();
             modeCheck();
             cordsShow();
