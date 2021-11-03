@@ -10,10 +10,26 @@
     <Grid x:Name="MWindow" Background="White">
         <Rectangle Height="32" Stroke="Black" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow" Fill="#33000000" Margin="-1,-2,-1,0"/>
 
-        <Button x:Name="leftB" Content="◀" Margin="0,0,309,50" Visibility="Visible" Click="leftB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom"/>
-        <Button x:Name="forwardB" Content="🔼" Margin="0,0,268,85" Click="forwardB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom"/>
-        <Button x:Name="backB" Content="🔽" Margin="0,0,268,15" Click="backB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom"/>
-        <Button x:Name="rightB" Content="▶" Margin="0,0,227,50" Click="rightB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom"/>
+        <Button x:Name="leftB" Margin="0,0,309,50" Visibility="Visible" Click="leftB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom" BorderThickness="1,1,1,1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/left-arrow.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="forwardB" Margin="0,0,268,85" Click="forwardB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/up-arrow.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="backB" Margin="0,0,268,15" Click="backB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/down-arrow.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="rightB" Margin="0,0,227,50" Click="rightB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/right-arrow.png"/>
+            </StackPanel>
+        </Button>
         <Label x:Name="street_label" Content="Улица: " HorizontalAlignment="Left" Margin="14,40,0,0" VerticalAlignment="Top" FontSize="18"/>
         <DataGrid x:Name="Places" MaxWidth="300" Margin="28,87,0,62" IsReadOnly="True" HorizontalAlignment="Left" Width="327" Background="White" BorderBrush="Transparent"/>
         <Label x:Name="street" Content="Label" HorizontalAlignment="Left" Margin="78,40,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="Black" FontSize="18"/>
@@ -22,16 +38,55 @@
         <Label x:Name="constx" Content="0" Margin="0,0,16,39" HorizontalAlignment="Right" Width="23" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="consty" Content="0" Margin="0,0,16,18" HorizontalAlignment="Right" Width="23" Height="26" VerticalAlignment="Bottom"/>
         <Image x:Name="MapView" Margin="368,50,20,201" Stretch="Uniform"/>
-        <Button x:Name="modeB" Content="☀" Margin="0,3,81,0" Click="modeB_Click" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top" MouseEnter="modeB_Yellow" MouseLeave="modeB_Black"/>
-        <Button x:Name="closeB" Content="❌" Margin="0,3,3,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="closeB_Click" MouseEnter="closeB_Red" MouseLeave="closeB_Black"/>
-        <Button x:Name="maxB" Content="🔲" Margin="0,3,29,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="maxB_Click" MouseEnter="maxB_Blue" MouseLeave="maxB_Black"/>
-        <Button x:Name="minB" Content="_" Margin="0,3,55,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="minB_Click" MouseEnter="minB_Blue" MouseLeave="minB_Black"/>
-        <Button x:Name="saveB" Content="Сохранить" Margin="0,0,350,19" HorizontalAlignment="Right" Width="62" Height="20" VerticalAlignment="Bottom" Click="saveB_Click"/>
-        <Button x:Name="respawnB" Content="В начало" Margin="0,0,167,18" HorizontalAlignment="Right" Width="62" Height="20" VerticalAlignment="Bottom" Click="respawnB_Click"/>
-        <Button x:Name ="helpB" Content="❓" Margin="0,3,107,0" VerticalAlignment="Top" Click="helpB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="helpB_Blue" MouseLeave="helpB_Black"/>
+        <Button x:Name="modeB" Margin="0,3,81,0" Click="modeB_Click" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top" MouseEnter="modeB_Yellow" MouseLeave="modeB_Black">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="mode_im" Source="Assets/light-black.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="closeB" Margin="0,3,3,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="closeB_Click" MouseEnter="closeB_Red" MouseLeave="closeB_Black">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="close_im" Source="Assets/close.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="maxB" Margin="0,3,29,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="maxB_Click" MouseEnter="maxB_Blue" MouseLeave="maxB_Black">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="max_im" Source="Assets/max-black.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="minB" Margin="0,3,55,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="24" Click="minB_Click" MouseEnter="minB_Blue" MouseLeave="minB_Black">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="min_im" Source="Assets/min-black.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="saveB" Content="Сохранить" Margin="0,0,361,58" HorizontalAlignment="Right" Width="62" Height="20" VerticalAlignment="Bottom" Click="saveB_Click"/>
+        <Button x:Name="respawnB" Content="В начало" Margin="0,0,155,58" HorizontalAlignment="Right" Width="62" Height="20" VerticalAlignment="Bottom" Click="respawnB_Click"/>
+        <Button x:Name ="helpB" Margin="0,3,107,0" VerticalAlignment="Top" Click="helpB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="helpB_Blue" MouseLeave="helpB_Black">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="help_im" Source="Assets/help-black.png"/>
+            </StackPanel>
+        </Button>
         <Label x:Name="name" Content="Симулятор прогулки по Орше" HorizontalAlignment="Left" Margin="20,2,0,0" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow"/>
-        <Button x:Name ="cordsB" Content="x,y" Margin="0,3,133,0" VerticalAlignment="Top" Click="cordsB_Click" HorizontalAlignment="Right" Width="24" FontWeight="Normal" Height="24" MouseEnter="cordsB_Blue" MouseLeave="cordsB_Black"/>
-        <Label x:Name="Time" Content="Label" HorizontalAlignment="Right" Margin="0,-4,187,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="Time" Content="Label" HorizontalAlignment="Right" Margin="0,-4,187,0" VerticalAlignment="Top" FontSize="18" Visibility="Hidden"/>
+        <Button x:Name="right_upB" Margin="0,0,222,90" Click="right_upB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/right-up-arrow.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="left_upB" Margin="0,0,314,90" Click="left_upB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/left-up-arrow.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="left_downB" Margin="0,0,314,10" Click="left_downB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/left-down-arrow.png"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="right_downB" Margin="0,0,222,10" Click="right_downB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/right-down-arrow.png"/>
+            </StackPanel>
+        </Button>
 
     </Grid>
 

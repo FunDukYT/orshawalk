@@ -8,6 +8,29 @@
 
   <ItemGroup>
     <None Remove="1606949809_12-p-nochnoi-gorod-49.jpg" />
+    <None Remove="Assets\close-enter.png" />
+    <None Remove="Assets\close.png" />
+    <None Remove="Assets\dark-black.png" />
+    <None Remove="Assets\dark-yellow.png" />
+    <None Remove="Assets\down-arrow.png" />
+    <None Remove="Assets\empty.png" />
+    <None Remove="Assets\help-black.png" />
+    <None Remove="Assets\help-blue.png" />
+    <None Remove="Assets\left-arrow.png" />
+    <None Remove="Assets\left-down-arrow.png" />
+    <None Remove="Assets\left-up-arrow.png" />
+    <None Remove="Assets\light-black.png" />
+    <None Remove="Assets\light-yellow.png" />
+    <None Remove="Assets\max-black.png" />
+    <None Remove="Assets\max-blue.png" />
+    <None Remove="Assets\max2-black.png" />
+    <None Remove="Assets\max2-blue.png" />
+    <None Remove="Assets\min-black.png" />
+    <None Remove="Assets\min-blue.png" />
+    <None Remove="Assets\right-arrow.png" />
+    <None Remove="Assets\right-down-arrow.png" />
+    <None Remove="Assets\right-up-arrow.png" />
+    <None Remove="Assets\up-arrow.png" />
     <None Remove="cooltext391766154724925.png" />
     <None Remove="Half-Life_Black_Mesa_logo.svg.png" />
     <None Remove="mj.png" />
@@ -20,6 +43,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\close-enter.png" />
+    <Resource Include="Assets\close.png" />
+    <Resource Include="Assets\dark-black.png" />
+    <Resource Include="Assets\dark-yellow.png" />
+    <Resource Include="Assets\down-arrow.png" />
+    <Resource Include="Assets\empty.png" />
+    <Resource Include="Assets\help-black.png" />
+    <Resource Include="Assets\help-blue.png" />
+    <Resource Include="Assets\left-arrow.png" />
+    <Resource Include="Assets\left-down-arrow.png" />
+    <Resource Include="Assets\left-up-arrow.png" />
+    <Resource Include="Assets\light-black.png" />
+    <Resource Include="Assets\light-yellow.png" />
+    <Resource Include="Assets\max-black.png" />
+    <Resource Include="Assets\max-blue.png" />
+    <Resource Include="Assets\max2-black.png" />
+    <Resource Include="Assets\max2-blue.png" />
+    <Resource Include="Assets\min-black.png" />
+    <Resource Include="Assets\min-blue.png" />
+    <Resource Include="Assets\right-arrow.png" />
+    <Resource Include="Assets\right-down-arrow.png" />
+    <Resource Include="Assets\right-up-arrow.png" />
+    <Resource Include="Assets\up-arrow.png" />
     <Resource Include="orshawalk.ico.png" />
   </ItemGroup>
 
