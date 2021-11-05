@@ -1,4 +1,4 @@
-﻿<Window x:Class="WpfApp1.MainWindow" KeyUp="Window_Key"
+﻿<Window x:Class="WpfApp1.MainWindow" KeyDown="Window_Key"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,7 @@
         Title="OrshaWalk" WindowState="Normal" ResizeMode="CanResize" WindowStyle="None" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" MinWidth="1024" MinHeight="600" SizeToContent="Manual" WindowStartupLocation="CenterScreen" Icon="/orshawalk.ico.png">
 
     <Grid x:Name="MWindow" Background="White">
+
         <Rectangle Height="32" Stroke="Black" VerticalAlignment="Top" MouseLeftButtonDown="DragWindow" Fill="#33000000" Margin="-1,-2,-1,0"/>
 
         <Button x:Name="leftB" Margin="0,0,309,50" Visibility="Visible" Click="leftB_Click" HorizontalAlignment="Right" Width="42" Height="36" VerticalAlignment="Bottom" BorderThickness="1,1,1,1">
@@ -30,14 +31,14 @@
                 <Image Source="Assets/right-arrow.png"/>
             </StackPanel>
         </Button>
-        <Label x:Name="street_label" Content="Улица: " HorizontalAlignment="Left" Margin="14,40,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <DataGrid x:Name="Places" MaxWidth="300" Margin="28,87,0,62" IsReadOnly="True" HorizontalAlignment="Left" Width="327" Background="White" BorderBrush="Transparent"/>
-        <Label x:Name="street" Content="Label" HorizontalAlignment="Left" Margin="78,40,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="Black" FontSize="18"/>
+        <Label x:Name="street_label" Content="Улица: " HorizontalAlignment="Left" Margin="14,36,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <DataGrid x:Name="Places" MaxWidth="300" Margin="26,83,0,50" IsReadOnly="True" HorizontalAlignment="Left" Width="327" Background="White" BorderBrush="Transparent"/>
+        <Label x:Name="street" Content="Label" HorizontalAlignment="Left" Margin="78,36,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="Black" FontSize="18"/>
         <Label x:Name="xxx" Content="x=" Margin="0,0,35,39" HorizontalAlignment="Right" Width="24" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="yyy" Content="y=" Margin="0,0,35,19" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="24"/>
         <Label x:Name="constx" Content="0" Margin="0,0,16,39" HorizontalAlignment="Right" Width="23" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="consty" Content="0" Margin="0,0,16,18" HorizontalAlignment="Right" Width="23" Height="26" VerticalAlignment="Bottom"/>
-        <Image x:Name="MapView" Margin="368,50,20,201" Stretch="Uniform"/>
+        <Image x:Name="MapView" Margin="368,52,20,183" Stretch="Uniform"/>
         <Button x:Name="modeB" Margin="0,3,81,0" Click="modeB_Click" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top" MouseEnter="modeB_Yellow" MouseLeave="modeB_Black">
             <StackPanel Orientation="Horizontal">
                 <Image x:Name="mode_im" Source="Assets/light-black.png"/>
@@ -87,6 +88,7 @@
                 <Image Source="Assets/right-down-arrow.png"/>
             </StackPanel>
         </Button>
+        <Button x:Name="cordsB" Click="cordsB_Click" Content="x,y" Margin="0,3,134,0" VerticalAlignment="Top" Height="24" MouseEnter="cordsB_Blue" MouseLeave="cordsB_Black" HorizontalAlignment="Right" Width="24"/>
 
     </Grid>
 

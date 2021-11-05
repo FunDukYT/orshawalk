@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Data;
 using System.Data.SQLite;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace WpfApp1
@@ -25,7 +15,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public int x; // координата х
-        public int x1; // временная координата 
+        public int x1; // временная координата x
         public int y; // координата у
         public int y1; // временная координата у
         public static int mode; // цветовой режим
@@ -33,7 +23,7 @@ namespace WpfApp1
         public string street_name; // название улицы
         public int cordsv; // параметр видимости координатов
         public int cordsv1; // временный параметр видимости координатов
-        public string modeS;
+        public string modeS; // временный параметр цветового режима
 
         public void respawn() // возврат к нулевым координатам
         {
@@ -42,6 +32,7 @@ namespace WpfApp1
             constx.Content = x;
             consty.Content = y;
             streetCheck();
+            imageChange();
         }
         public void modeCheck() // проверка и установка цветов цветового режима
         {
@@ -63,7 +54,7 @@ namespace WpfApp1
             }
             else if (mode == 0)
             {
-                MWindow.Background = new SolidColorBrush(Colors.White);
+                MWindow.Background = new SolidColorBrush(Colors.Azure);
                 String stringPath = "Assets/light-black.png";
                 mode_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
                 street.Foreground = new SolidColorBrush(Colors.Black);
@@ -73,7 +64,7 @@ namespace WpfApp1
                 xxx.Foreground = new SolidColorBrush(Colors.Black);
                 yyy.Foreground = new SolidColorBrush(Colors.Black);
                 name.Foreground = new SolidColorBrush(Colors.Black);
-                Places.Background = new SolidColorBrush(Colors.White);
+                Places.Background = new SolidColorBrush(Colors.Azure);
                 Time.Foreground = new SolidColorBrush(Colors.Black);
                 modeS = "light";
             }
@@ -133,7 +124,7 @@ namespace WpfApp1
         {
             try
             {
-                String stringPath = "Assets/" + x + y + ".jpg";
+                String stringPath = "Images/" + x + y + ".jpg";
                 MapView.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
             }
             catch
@@ -144,7 +135,7 @@ namespace WpfApp1
         }
         public void streetCheck() // проверка улицы по координатам
         {
-            if (x >= 1 && x <= 2 && y <= 4 && y >= 1)
+            if (x >= 0 && x <= 1 && y <= 60 && y >= 1)
             {
                 street_name = "Молокова";
                 streetChange();
@@ -206,17 +197,30 @@ namespace WpfApp1
         }
         public void load() // загрузка сохраненных координатов и настроек
         {
-            using (StreamReader sr = new StreamReader(@"./save.save"))
+            try
             {
-                x = int.Parse(sr.ReadLine());
-                y = int.Parse(sr.ReadLine());
-                mode = int.Parse(sr.ReadLine());
-                cordsv = int.Parse(sr.ReadLine());
+                using (StreamReader sr = new StreamReader(@"./save.save"))
+                {
+                    x = int.Parse(sr.ReadLine());
+                    y = int.Parse(sr.ReadLine());
+                    mode = int.Parse(sr.ReadLine());
+                    cordsv = int.Parse(sr.ReadLine());
+                }
+                y1 = y;
+                x1 = x;
+                mode1 = mode;
+                cordsv1 = cordsv;
             }
-            y1 = y;
-            x1 = x;
-            mode1 = mode;
-            cordsv1 = cordsv;
+            catch // если файл сохранения отсутствует, программа создаст новый
+            {
+                using (StreamWriter writer = new StreamWriter(@"./save.save"))
+                {
+                    writer.WriteLine(0);
+                    writer.WriteLine(0);
+                    writer.WriteLine(0);
+                    writer.WriteLine(0);
+                }
+            }
         }
         public void DragWindow(object sender, MouseButtonEventArgs e) // перемещение окна с помощью мыши
         {
@@ -290,6 +294,14 @@ namespace WpfApp1
             String stringPath = "Assets/help-black.png";
             help_im.Source = new ImageSourceConverter().ConvertFromString(stringPath) as ImageSource;
         }
+        public void cordsB_Blue(object sender, MouseEventArgs e)
+        {
+            cordsB.Foreground = new SolidColorBrush(Colors.Blue);
+        }
+        public void cordsB_Black(object sender, MouseEventArgs e)
+        {
+            cordsB.Foreground = new SolidColorBrush(Colors.Black);
+        }
         private void Window_Key(object sender, KeyEventArgs e) // горячие клавиши в приложении
         {
             if (e.Key == Key.Up)
@@ -319,6 +331,10 @@ namespace WpfApp1
             else if (e.Key == Key.F1)
             {
                 help();
+            }
+            else if (e.Key == Key.X)
+            {
+                cordsChange();
             }
         }
         private void forwardB_Click(object sender, RoutedEventArgs e)
@@ -411,7 +427,47 @@ namespace WpfApp1
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
-        public void help()
+        private void cordsB_Click(object sender, RoutedEventArgs e)
+        {
+            cordsChange();      
+        }
+        public void cordsChange()
+        {
+            if (cordsv == 0)
+            {
+                xxx.Visibility = Visibility.Visible;
+                yyy.Visibility = Visibility.Visible;
+                constx.Visibility = Visibility.Visible;
+                consty.Visibility = Visibility.Visible;
+                cordsv = 1;
+            }
+            else if (cordsv == 1)
+            {
+                xxx.Visibility = Visibility.Hidden;
+                yyy.Visibility = Visibility.Hidden;
+                constx.Visibility = Visibility.Hidden;
+                consty.Visibility = Visibility.Hidden;
+                cordsv = 0;
+            }
+        }
+        public void cordsCheck()
+        {
+            if (cordsv == 1)
+            {
+                xxx.Visibility = Visibility.Visible;
+                yyy.Visibility = Visibility.Visible;
+                constx.Visibility = Visibility.Visible;
+                consty.Visibility = Visibility.Visible;
+            }
+            else if (cordsv == 0)
+            {
+                xxx.Visibility = Visibility.Hidden;
+                yyy.Visibility = Visibility.Hidden;
+                constx.Visibility = Visibility.Hidden;
+                consty.Visibility = Visibility.Hidden;
+            }
+        }
+        public void help() // вызов справки
         {
             Help help = new Help();
             help.Show();
@@ -433,10 +489,10 @@ namespace WpfApp1
         }
         public void cordsShow()
         {
-            consty.Content = y;
             constx.Content = x;
+            consty.Content = y;
         }
-        public void timeShow()
+        public void timeShow() // показ времени
         {
             DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate { Time.Content = DateTime.Now.ToString("HH:mm:ss"); }, this.Dispatcher);
         }
@@ -449,6 +505,7 @@ namespace WpfApp1
             streetCheck();
             modeCheck();
             cordsShow();
+            cordsCheck();
             timeShow();
         }
     }
